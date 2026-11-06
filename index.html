@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:96px}
+html,body{margin:0;padding:0;background:#002547;color:#FFFFFF}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#3D9BEA}
+a:hover{color:#7FBDF2}
+input,button{font-family:inherit}
+details[open] summary svg{transform:rotate(45deg)}
+summary::-webkit-details-marker{display:none}
+@keyframes degraPop{0%{opacity:0;transform:scale(.85) translateY(6px)}60%{opacity:1;transform:scale(1.05)}100%{transform:scale(1)}}
+.degra-pop{animation:degraPop .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes degraLogoIn{0%{opacity:0;clip-path:inset(0 100% 0 0);transform:scale(.96)}60%{opacity:1}100%{opacity:1;clip-path:inset(0 0 0 0);transform:scale(1)}}
+@keyframes degraBar{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes degraGlow{0%,100%{opacity:.35}50%{opacity:.8}}
+@keyframes degraRing{from{stroke-dashoffset:604}to{stroke-dashoffset:0}}
+@keyframes degraRingSpin{to{transform:rotate(360deg)}}
+@keyframes degraFadeUp{0%{opacity:0;transform:translateY(10px) scale(.94);filter:blur(6px)}100%{opacity:1;transform:none;filter:blur(0)}}
+@keyframes degraLine{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes degraSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.degra-cta:hover .degra-cta-in{background:#0F4A86}
+.degra-cta:hover .degra-submit-in{background:#2E8FE6}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#002547;font-size:18px;line-height:1.65;color:#FFFFFF">
+  {{ preloader }}
+
+  <div style="position:fixed;top:16px;left:0;right:0;z-index:95;padding:0 16px;display:flex;justify-content:center;pointer-events:none">
+    <header style="pointer-events:{{ floatPE }};opacity:{{ floatOpacity }};transform:{{ floatTransform }};transition:opacity .4s ease,transform .55s cubic-bezier(.16,1,.3,1);width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 8px 8px {{ floatPadL }};border-radius:999px;background:rgba(0,37,71,0.72);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border:1px solid rgba(127,196,255,0.22);box-shadow:0 10px 40px rgba(0,20,40,0.35)">
+      <a href="#" style="display:flex"><img src="assets/degra-logo-white.png" alt="DEGRA" style="display:block;height:34px;width:auto"></img></a>
+      <nav style="display:{{ deskDisp }};flex-wrap:wrap;justify-content:center;gap:clamp(14px,2.4vw,32px)">
+        <a href="#resenje" style="color:#E4EEF8;text-decoration:none;font-size:15px" style-hover="color:#FFFFFF">Rešenje</a>
+        <a href="#zasto" style="color:#E4EEF8;text-decoration:none;font-size:15px" style-hover="color:#FFFFFF">Zašto DEGRA</a>
+        <a href="#porudzbina" style="color:#E4EEF8;text-decoration:none;font-size:15px" style-hover="color:#FFFFFF">Ponuda</a>
+        <a href="#pitanja" style="color:#E4EEF8;text-decoration:none;font-size:15px" style-hover="color:#FFFFFF">Česta pitanja</a>
+      </nav>
+      <div style="display:{{ deskDisp }}">{{ navCta }}</div>
+      <button type="button" onClick="{{ toggleMenu }}" aria-label="Meni" aria-expanded="{{ menuOpen }}" style="display:{{ mobDisp }};width:48px;height:48px;flex:none;border:1px solid rgba(127,196,255,0.35);border-radius:999px;background:rgba(255,255,255,0.04);cursor:pointer;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#FFFFFF" stroke-width="1.7"><path d="{{ burgerPath }}"></path></svg></button>
+    </header>
+  </div>
+
+  <div data-screen-label="01 Hero" style="position:relative;background:linear-gradient(180deg,#002547 0%,#002a4f 50%,#00315a 100%);color:#FFFFFF;overflow:hidden;min-height:100vh;display:flex;flex-direction:column">
+    <img src="assets/hero-portrait.png" alt="" style="position:absolute;bottom:0;left:60%;transform:translateX(-50%);height:calc(100% - 40px);width:auto;max-width:none;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 14%,#000 86%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 12%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,#000 14%,#000 86%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 12%);mask-composite:intersect;pointer-events:none"></img>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,37,71,0.75) 0%,rgba(0,37,71,0.2) 38%,rgba(0,37,71,0) 55%);pointer-events:none"></div>
+    <div style="position:absolute;left:0;bottom:56px;width:clamp(120px,18vw,240px);height:120px;border-right:1px solid rgba(255,255,255,0.22);border-top:1px solid rgba(255,255,255,0.22);border-top-right-radius:40px;pointer-events:none"></div>
+    <div style="position:absolute;right:0;top:46%;width:110px;height:240px;border-left:1px solid rgba(255,255,255,0.22);border-top:1px solid rgba(255,255,255,0.22);border-top-left-radius:40px;pointer-events:none"></div>
+
+    <div style="display:{{ mobDisp }};position:absolute;left:0;right:0;bottom:calc(28px + env(safe-area-inset-bottom));z-index:4;justify-content:center;padding:0 20px">{{ navCta }}</div>
+    <header style="position:relative;z-index:3;opacity:{{ staticOpacity }};visibility:{{ staticVis }};transition:opacity .3s ease">
+      <div style="max-width:1240px;margin:0 auto;padding:{{ headPad }};display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+        <img src="assets/degra-logo-white.png" alt="DEGRA" style="display:block;height:48px;width:auto"></img>
+        <nav style="display:{{ deskDisp }};flex-wrap:wrap;gap:clamp(16px,2.6vw,36px);font-size:16px">
+          <a href="#resenje" style="color:#E4EEF8;text-decoration:none" style-hover="color:#FFFFFF">Rešenje</a>
+          <a href="#zasto" style="color:#E4EEF8;text-decoration:none" style-hover="color:#FFFFFF">Zašto DEGRA</a>
+          <a href="#porudzbina" style="color:#E4EEF8;text-decoration:none" style-hover="color:#FFFFFF">Ponuda</a>
+          <a href="#pitanja" style="color:#E4EEF8;text-decoration:none" style-hover="color:#FFFFFF">Česta pitanja</a>
+        </nav>
+        <div style="display:{{ deskDisp }}">{{ navCta }}</div>
+        <button type="button" onClick="{{ toggleMenu }}" aria-label="Meni" aria-expanded="{{ menuOpen }}" style="display:{{ mobDisp }};width:48px;height:48px;flex:none;border:1px solid rgba(127,196,255,0.35);border-radius:999px;background:rgba(255,255,255,0.04);cursor:pointer;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#FFFFFF" stroke-width="1.7"><path d="{{ burgerPath }}"></path></svg></button>
+      </div>
+    </header>
+
+    <section style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:clamp(24px,4vw,48px) 32px 0;display:flex;align-items:center;flex:1;width:100%">
+      <div style="position:relative;z-index:2;padding:clamp(24px,4vw,48px) 0 clamp(64px,9vw,120px);max-width:760px">
+        <sc-if value="{{ hlQuestion }}" hint-placeholder-val="{{ true }}">
+          <h1 style="margin:0;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(34px,5.4vw,74px);line-height:1.08;letter-spacing:-0.01em;color:#FFFFFF">Oslobodi svoj<br>pun potencijal.<br><span style="white-space:nowrap">Ostavi je <em style="font-style:italic;color:#FFFFFF">bez daha.</em></span></h1>
+        </sc-if>
+        <sc-if value="{{ hlHowTo }}" hint-placeholder-val="{{ false }}">
+          <h1 style="margin:0;max-width:13ch;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(44px,6vw,74px);line-height:1.08;letter-spacing:-0.01em;color:#FFFFFF;text-wrap:balance">Kako da opet budeš <em style="font-style:italic;color:#FFFFFF">siguran</em> u sebe, bez straha od sledećeg puta</h1>
+        </sc-if>
+        <sc-if value="{{ hlWarning }}" hint-placeholder-val="{{ false }}">
+          <h1 style="margin:0;max-width:13ch;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(44px,6vw,74px);line-height:1.08;letter-spacing:-0.01em;color:#FFFFFF;text-wrap:balance">Ne izbegavaj je još <em style="font-style:italic;color:#FFFFFF">jedno veče</em> dok ne pročitaš ovo</h1>
+        </sc-if>
+        
+      </div>
+
+    </section>
+  </div>
+
+  <section id="resenje" data-screen-label="03 Resenje" style="background:#FFFFFF;color:#0B1F33;padding:clamp(96px,11vw,128px) 24px">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,80px);align-items:center">
+      <div>
+        <p style="margin:0 0 20px;font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#1D6FB0">Izlaz postoji</p>
+        <h2 style="margin:0 0 32px;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(32px,4.4vw,46px);line-height:1.15;text-wrap:balance">Problem sa potencijom nije presuda. To je nešto što možeš da rešiš.</h2>
+        <div style="display:flex;flex-direction:column;gap:22px;max-width:65ch;color:#34475A;text-wrap:pretty">
+          <p style="margin:0">DEGRA 100 mg deluje inhibicijom enzima PDE5, čime se sprečava razgradnja cGMP-a - molekula koji omogućava opuštanje glatkih mišića i širenje krvnih sudova u erektilnom tkivu. Na taj način se pojačava prirodni odgovor organizma na seksualnu stimulaciju, olakšavajući postizanje i održavanje erekcije.</p>
+          <p style="margin:0;padding:18px 20px;border:1px solid #DDE3E8;border-radius:12px;background:#F5F8FC;color:#0B1F33">Za razliku od ostalih, jedna tableta DEGRA sadrži <strong style="font-weight:600;color:#1D6FB0">100 mg najkvalitetnije sirovine supstance sildenafil</strong>, što je čini jedinstvenom na tržištu.</p>
+          <p style="margin:0;display:flex;gap:12px;align-items:flex-start;font-size:16px;color:#34475A"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1D6FB0" stroke-width="1.6" style="flex:none;margin-top:3px"><circle cx="10" cy="10" r="8.5"></circle><path d="M10 9v5M10 6v.5"></path></svg><span><strong style="font-weight:600;color:#0B1F33">Napomena:</strong> DEGRA ne izaziva automatsku erekciju - za njeno dejstvo neophodna je seksualna stimulacija.</span></p>
+        </div>
+      </div>
+      <div style="overflow:hidden;border-radius:8px"><img src="assets/degra-pakovanje.png" alt="Pakovanje DEGRA, 4 film tablete od 100 mg" style="display:block;width:100%;height:auto;transition:transform .5s cubic-bezier(.2,.8,.2,1);cursor:zoom-in" style-hover="transform:scale(1.12)"></img></div>
+    </div>
+  </section>
+
+  <section id="zasto" data-screen-label="04 Kredibilitet" style="padding:clamp(96px,11vw,128px) 24px;background:#00315a;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,80px);align-items:center">
+      <figure style="margin:0;max-width:420px;width:100%;display:flex;flex-direction:column;gap:14px">
+        <div style="position:relative;background:#FFFFFF;border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.18)">
+          <button type="button" onClick="{{ docOpen }}" aria-label="Uvećaj dokument" style="position:relative;display:block;width:100%;padding:0;border:none;background:transparent;cursor:zoom-in" style-hover="opacity:0.92">
+            <img src="assets/degra-smpc-strana1.png" alt="Prva strana zvaničnog sažetka karakteristika leka DEGRA, sa pečatom agencije za lekove" style="display:block;width:100%;height:auto;border-radius:4px"></img>
+            <span style="position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:#002547;color:#FFFFFF;font-size:13px;font-weight:600;letter-spacing:0.04em;box-shadow:0 6px 20px rgba(0,20,40,0.35)"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#FFFFFF" stroke-width="1.8"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="M13 13l4.5 4.5M8.5 6v5M6 8.5h5"></path></svg>Uvećaj dokument</span>
+          </button>
+        </div>
+        <figcaption style="font-size:14px;line-height:1.5;color:#93A9BF">Odobren sažetak karakteristika leka DEGRA, strana 1, sa pečatom agencije za lekove.</figcaption>
+        <div style="display:{{ mobDisp }};flex-direction:column;margin-top:6px;border-top:1px solid rgba(255,255,255,0.14)">
+          <p style="margin:0;padding:14px 0 4px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#3D9BEA">Šta piše u dokumentu</p>
+          <sc-for list="{{ docFacts }}" as="d" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:minmax(0,110px) minmax(0,1fr);gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.14);font-size:15px;line-height:1.45">
+              <span style="color:#93A9BF">{{ d.k }}</span>
+              <span style="color:#FFFFFF">{{ d.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </figure>
+      <div>
+        <p style="margin:0 0 20px;font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#3D9BEA">Zašto baš DEGRA</p>
+        <h2 style="margin:0 0 40px;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(32px,4.4vw,46px);line-height:1.15;text-wrap:balance">Nije nov proizvod koji neko testira na tebi</h2>
+        <div style="display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,0.14)">
+          <div style="display:grid;grid-template-columns:minmax(0,56px) minmax(0,1fr);gap:16px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.14);align-items:baseline">
+            <span style="font-family:'Source Serif 4',serif;font-weight:400;font-size:28px;line-height:1;color:#3D9BEA">01</span>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <h3 style="margin:0;font-family:'Source Serif 4',serif;font-weight:600;font-size:22px;line-height:1.25;color:#FFFFFF">Međunarodno prisustvo</h3>
+              <p style="margin:0;font-size:17px;line-height:1.6;color:#C9D8E8;text-wrap:pretty">Dokumentovana odobrenja i prisustvo na više tržišta, među kojima je i Švajcarska.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,56px) minmax(0,1fr);gap:16px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.14);align-items:baseline">
+            <span style="font-family:'Source Serif 4',serif;font-weight:400;font-size:28px;line-height:1;color:#3D9BEA">02</span>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <h3 style="margin:0;font-family:'Source Serif 4',serif;font-weight:600;font-size:22px;line-height:1.25;color:#FFFFFF">Na tržištu je prisutna više od dve decenije</h3>
+              <p style="margin:0;font-size:17px;line-height:1.6;color:#C9D8E8;text-wrap:pretty">Prva dozvola za stavljanje leka u promet izdata 2005. godine od strane Ministarstva zdravlja Republike Turske.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,56px) minmax(0,1fr);gap:16px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.14);align-items:baseline">
+            <span style="font-family:'Source Serif 4',serif;font-weight:400;font-size:28px;line-height:1;color:#3D9BEA">03</span>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <h3 style="margin:0;font-family:'Source Serif 4',serif;font-weight:600;font-size:22px;line-height:1.25;color:#FFFFFF">Poznata aktivna supstanca</h3>
+              <p style="margin:0;font-size:17px;line-height:1.6;color:#C9D8E8;text-wrap:pretty">Sildenafil 100 mg, sa dobro proučenim farmakološkim dejstvom.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,56px) minmax(0,1fr);gap:16px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.14);align-items:baseline">
+            <span style="font-family:'Source Serif 4',serif;font-weight:400;font-size:28px;line-height:1;color:#3D9BEA">04</span>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <h3 style="margin:0;font-family:'Source Serif 4',serif;font-weight:600;font-size:22px;line-height:1.25;color:#FFFFFF">Zvanična dokumentacija</h3>
+              <p style="margin:0;font-size:17px;line-height:1.6;color:#C9D8E8;text-wrap:pretty">Dostupna farmaceutska dokumentacija koja opisuje sastav, dejstvo i bezbednosne informacije.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="porudzbina" data-screen-label="06 Ponuda" style="padding:clamp(96px,11vw,128px) 24px;background:#00203F;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)">
+    <div style="max-width:1100px;margin:0 auto">
+      <p style="margin:0 0 20px;font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#3D9BEA">Ponuda</p>
+      <h2 style="margin:0 0 48px;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(32px,4.4vw,46px);line-height:1.15;color:#FFFFFF">Naruči DEGRA</h2>
+      <div style="display:flex;flex-wrap:wrap;border-radius:24px;overflow:hidden;background:#FFFFFF;border:1px solid rgba(127,196,255,0.3);box-shadow:0 30px 80px rgba(0,10,25,0.4)">
+        <div style="position:relative;flex:1 1 300px;background:linear-gradient(180deg,#002547 0%,#00315a 100%);color:#FFFFFF;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;overflow:hidden">
+          <div style="position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:10px solid rgba(46,143,230,0.35);pointer-events:none"></div>
+          <img src="assets/degra-logo-white.png" alt="DEGRA" style="position:relative;display:block;height:30px;width:auto;align-self:flex-start"></img>
+          <div style="position:relative;background:#FFFFFF;border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:center">
+            <img src="assets/degra-pakovanje.png" alt="Pakovanje DEGRA" style="display:block;width:100%;max-width:240px;height:auto"></img>
+          </div>
+          <div style="position:relative;display:{{ mobDisp }};align-items:center;justify-content:space-between;gap:12px;padding:14px 14px 14px 18px;border:1px solid rgba(127,196,255,0.28);border-radius:14px;background:rgba(255,255,255,0.04)">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:13px;color:#C9D8E8">Jedno pakovanje</span>
+              <span style="font-family:'Source Serif 4',serif;font-size:24px;line-height:1.1;color:#FFFFFF">2500 din</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <button type="button" onClick="{{ pDec }}" aria-label="Smanji" style="width:44px;height:44px;border:1px solid rgba(127,196,255,0.4);border-radius:999px;background:rgba(255,255,255,0.06);color:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M2 7h10"></path></svg></button>
+              <span aria-live="polite" style="min-width:34px;text-align:center;font-family:'Source Serif 4',serif;font-size:24px;line-height:1;color:#FFFFFF">{{ pQty }}</span>
+              <button type="button" onClick="{{ pInc }}" aria-label="Povećaj" style="width:44px;height:44px;border:1px solid rgba(127,196,255,0.4);border-radius:999px;background:rgba(255,255,255,0.06);color:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M2 7h10M7 2v10"></path></svg></button>
+            </div>
+          </div>
+          <div style="position:relative;display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.14)">
+            <span style="font-size:15px;color:#C9D8E8">{{ pQtyLabel }}</span>
+            <span style="flex:none;white-space:nowrap;font-family:'Source Serif 4',serif;font-size:34px;line-height:1;color:#FFFFFF">{{ pTotal }} <span style="font-size:16px;color:#C9D8E8">din</span></span>
+          </div>
+          <sc-if value="{{ pFreeShip }}" hint-placeholder-val="{{ false }}">
+            <div class="degra-pop" style="position:relative;margin-top:-6px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;background:#2E8FE6;color:#FFFFFF;box-shadow:0 0 0 1px rgba(127,196,255,0.6),0 8px 24px rgba(46,143,230,0.45)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.7" style="flex:none"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path><circle cx="7" cy="17.5" r="1.6"></circle><circle cx="17" cy="17.5" r="1.6"></circle></svg><div style="display:flex;flex-direction:column;line-height:1.25"><span style="font-size:16px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase">Poštarina gratis</span></div></div>
+          </sc-if>
+          <ol style="position:relative;margin:0;padding:0;list-style:none;display:{{ deskDisp }};flex-direction:column;gap:14px">
+            <li style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start"><span style="width:28px;height:28px;border-radius:999px;border:1px solid rgba(127,196,255,0.5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#7FC4FF">1</span><span style="font-size:15px;line-height:1.5;color:#C9D8E8;padding-top:3px">Upišeš podatke</span></li>
+            <li style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start"><span style="width:28px;height:28px;border-radius:999px;border:1px solid rgba(127,196,255,0.5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#7FC4FF">2</span><span style="font-size:15px;line-height:1.5;color:#C9D8E8;padding-top:3px">Klikneš na dugme Poruči</span></li>
+            <li style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start"><span style="width:28px;height:28px;border-radius:999px;border:1px solid rgba(127,196,255,0.5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#7FC4FF">3</span><span style="font-size:15px;line-height:1.5;color:#C9D8E8;padding-top:3px">Paket stiže na tvoju adresu</span></li>
+          </ol>
+        </div>
+        <div style="position:relative;flex:1.3 1 340px;padding:clamp(28px,4vw,44px);color:#0B1F33">
+          <sc-if value="{{ ponForm }}" hint-placeholder-val="{{ true }}">
+            <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1D6FB0">Porudžbina</p>
+            <h3 style="margin:0 0 10px;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(26px,3vw,32px);line-height:1.15">Gde da pošaljemo paket?</h3>
+            <p style="margin:0 0 28px;display:flex;align-items:center;gap:8px;font-size:16px;color:#34475A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D6FB0" stroke-width="1.7" style="flex:none"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path><circle cx="7" cy="17.5" r="1.6"></circle><circle cx="17" cy="17.5" r="1.6"></circle></svg><span>Poruči dva pakovanja i <strong style="font-weight:600;color:#1D6FB0">poštarina je gratis</strong>.</span></p>
+            <form onSubmit="{{ submitPon }}" style="display:flex;flex-direction:column;gap:16px">
+              <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Ime i prezime<input required="required" name="ime" autocomplete="name" placeholder="Marko Petrović" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px">
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Mesto<input required="required" name="mesto" autocomplete="address-level2" placeholder="Beograd" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Adresa<input required="required" name="adresa" autocomplete="street-address" placeholder="Ulica i broj" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px">
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Broj telefona<input required="required" type="tel" name="telefon" autocomplete="tel" placeholder="06x xxx xxxx" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Email<input required="required" type="email" name="email" autocomplete="email" placeholder="ime@email.com" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+              </div>
+              <div style="display:{{ deskDisp }};align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 12px 12px 18px;border:1px solid #E1E9F1;border-radius:14px;background:#F5F8FC">
+                <div style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Broj pakovanja</span>
+                  <span style="font-size:13px;color:#5A6B7C">2500 din po pakovanju</span>
+                  <sc-if value="{{ pFreeShip }}" hint-placeholder-val="{{ false }}"><span class="degra-pop" style="margin-top:4px;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 8px;border-radius:999px;background:#2E8FE6;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Poštarina gratis</span></sc-if>
+                  <sc-if value="{{ pNoFreeShip }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;color:#1D6FB0">Uz 2 pakovanja poštarina je gratis</span></sc-if>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <button type="button" onClick="{{ pDec }}" aria-label="Smanji" style="width:44px;height:44px;border:none;border-radius:999px;background:#FFFFFF;color:#0B1F33;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,30,60,0.08)" style-hover="background:#EAF4FD"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#0B1F33" stroke-width="1.8"><path d="M2 7h10"></path></svg></button>
+                  <span aria-live="polite" style="min-width:40px;text-align:center;font-family:'Source Serif 4',serif;font-size:24px;line-height:1;color:#0B1F33">{{ pQty }}</span>
+                  <button type="button" onClick="{{ pInc }}" aria-label="Povećaj" style="width:44px;height:44px;border:none;border-radius:999px;background:#FFFFFF;color:#0B1F33;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,30,60,0.08)" style-hover="background:#EAF4FD"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#0B1F33" stroke-width="1.8"><path d="M2 7h10M7 2v10"></path></svg></button>
+                </div>
+              </div>
+              {{ submitBtn }}
+              <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#5A6B7C">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#5A6B7C" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5"></rect><path d="M5.5 7V5a2.5 2.5 0 015 0v2"></path></svg>
+                <span>Podatke koristimo samo za ovu porudžbinu.</span>
+              </div>
+              <p style="margin:0;font-size:13px;line-height:1.5;color:#5A6B7C;text-align:center">Pre upotrebe popričaj sa lekarom ili farmaceutom.</p>
+            </form>
+          </sc-if>
+          <sc-if value="{{ ponDone }}" hint-placeholder-val="{{ false }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:24px 0">
+              <div style="width:64px;height:64px;border-radius:999px;background:#EAF4FD;display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2E8FE6" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+              <h3 style="margin:8px 0 0;font-family:'Source Serif 4',serif;font-weight:400;font-size:32px;line-height:1.2">Porudžbina je primljena.</h3>
+              <p style="margin:0;color:#34475A">Uskoro te zovemo da je potvrdimo. Drži telefon pri ruci.</p>
+              <button type="button" onClick="{{ ponReset }}" style="margin-top:12px;align-self:flex-start;height:50px;padding:0 28px;border:1px solid #D6E1EC;border-radius:999px;background:#FFFFFF;color:#0B1F33;font-size:14px;font-weight:600;cursor:pointer" style-hover="border-color:#2E8FE6">Nova porudžbina</button>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pitanja" data-screen-label="07 Pitanja" style="background:#FFFFFF;color:#0B1F33;min-height:calc(100vh - 70px);padding:clamp(96px,11vw,128px) 24px">
+    <div style="max-width:1100px;margin:0 auto">
+      <h2 style="margin:0 0 14px;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(32px,4.4vw,46px);line-height:1.15;color:#0B1F33">Česta pitanja</h2>
+      <p style="margin:0 0 36px;font-size:18px;color:#34475A">Sve što treba da znaš o leku DEGRA 100 mg.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="7">
+          <div style="border-radius:16px;background:#F2F6FA;border:1px solid #DDE6EF">
+            <button type="button" onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 26px;border:none;background:transparent;color:#0B1F33;font-family:inherit;font-size:clamp(17px,1.8vw,19px);font-weight:600;line-height:1.35;text-align:left;cursor:pointer">
+              <span>{{ f.q }}</span>
+              <span style="flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#1D6FB0;font-size:26px;font-weight:300;line-height:1">{{ f.icon }}</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;padding:0 26px 24px;max-width:80ch;font-size:17px;line-height:1.65;color:#34475A;text-wrap:pretty;white-space:pre-line">{{ f.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#001a33;border-top:1px solid rgba(255,255,255,0.1);padding:22px 24px">
+    <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:{{ footDir }};flex-wrap:wrap;align-items:center;justify-content:space-between;gap:{{ footGap }}">
+      <img src="assets/degra-logo-white.png" alt="DEGRA" style="display:block;height:30px;width:auto"></img>
+      <p style="margin:0;max-width:{{ footMax }};font-size:13px;line-height:1.6;color:#93A9BF;text-align:{{ footAlign }};text-wrap:balance">DEGRA ne zamenjuje pregled kod lekara. Ne koristi je uz lekove koji sadrže nitrate. Ako imaš problem sa srcem ili pritiskom, pitaj lekara pre upotrebe.</p>
+    </div>
+  </footer>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:90;background:#002547;display:flex;flex-direction:column;padding:96px 28px 32px">
+      <nav onClick="{{ closeMenu }}" style="display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,0.12)">
+        <a href="#resenje" style="display:block;padding:18px 4px;border-bottom:1px solid rgba(255,255,255,0.12);color:#FFFFFF;text-decoration:none;font-family:'Source Serif 4',serif;font-size:28px;line-height:1.2">Rešenje</a>
+        <a href="#zasto" style="display:block;padding:18px 4px;border-bottom:1px solid rgba(255,255,255,0.12);color:#FFFFFF;text-decoration:none;font-family:'Source Serif 4',serif;font-size:28px;line-height:1.2">Zašto DEGRA</a>
+        <a href="#porudzbina" style="display:block;padding:18px 4px;border-bottom:1px solid rgba(255,255,255,0.12);color:#FFFFFF;text-decoration:none;font-family:'Source Serif 4',serif;font-size:28px;line-height:1.2">Ponuda</a>
+        <a href="#pitanja" style="display:block;padding:18px 4px;border-bottom:1px solid rgba(255,255,255,0.12);color:#FFFFFF;text-decoration:none;font-family:'Source Serif 4',serif;font-size:28px;line-height:1.2">Česta pitanja</a>
+      </nav>
+      <div style="margin-top:32px;display:flex;justify-content:center">{{ navCta }}</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ docIsOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ docClose }}" onTouchStart="{{ docTS }}" onTouchMove="{{ docTM }}" onTouchEnd="{{ docTE }}" style="position:fixed;inset:0;z-index:120;background:rgba(0,14,30,0.9);overflow:auto;-webkit-overflow-scrolling:touch;padding:{{ docPad }}">
+      <button type="button" onClick="{{ docClose }}" aria-label="Zatvori" style="position:fixed;top:20px;right:20px;z-index:2;width:48px;height:48px;border:none;border-radius:999px;background:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.3)"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#0B1F33" stroke-width="1.8"><path d="M3 3l12 12M15 3L3 15"></path></svg></button>
+      <sc-if value="{{ docHint }}" hint-placeholder-val="{{ false }}">
+        <div style="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2;padding:10px 18px;border-radius:999px;background:#FFFFFF;color:#0B1F33;font-size:13px;font-weight:600;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,0.3);pointer-events:none">Dupli dodir ili dva prsta za zum</div>
+      </sc-if>
+      <img onClick="{{ docTap }}" src="assets/degra-smpc-strana1.png" alt="Sažetak karakteristika leka DEGRA, strana 1" style="display:block;width:{{ docImgW }};max-width:{{ docMaxW }};height:auto;margin:0 auto;border-radius:6px;background:#FFFFFF;box-shadow:0 30px 80px rgba(0,0,0,0.5)"></img>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:100;background:rgba(0,14,30,0.78);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto">
+      <div role="dialog" aria-modal="true" aria-label="Porudžbina" onClick="{{ stop }}" style="position:relative;width:100%;max-width:880px;max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-wrap:wrap;border-radius:24px;background:#FFFFFF;border:1px solid rgba(127,196,255,0.3);box-shadow:0 30px 80px rgba(0,10,25,0.5)">
+        <div style="position:relative;flex:1 1 300px;background:linear-gradient(180deg,#002547 0%,#00315a 100%);color:#FFFFFF;padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:24px;overflow:hidden">
+          <div style="position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:10px solid rgba(46,143,230,0.35);pointer-events:none"></div>
+          <img src="assets/degra-logo-white.png" alt="DEGRA" style="position:relative;display:block;height:30px;width:auto;align-self:flex-start"></img>
+          <div style="position:relative;background:#FFFFFF;border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:center">
+            <img src="assets/degra-pakovanje.png" alt="Pakovanje DEGRA" style="display:block;width:100%;max-width:240px;height:auto"></img>
+          </div>
+          <div style="position:relative;display:{{ mobDisp }};align-items:center;justify-content:space-between;gap:12px;padding:14px 14px 14px 18px;border:1px solid rgba(127,196,255,0.28);border-radius:14px;background:rgba(255,255,255,0.04)">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:13px;color:#C9D8E8">Jedno pakovanje</span>
+              <span style="font-family:'Source Serif 4',serif;font-size:24px;line-height:1.1;color:#FFFFFF">2500 din</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <button type="button" onClick="{{ dec }}" aria-label="Smanji" style="width:44px;height:44px;border:1px solid rgba(127,196,255,0.4);border-radius:999px;background:rgba(255,255,255,0.06);color:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M2 7h10"></path></svg></button>
+              <span aria-live="polite" style="min-width:34px;text-align:center;font-family:'Source Serif 4',serif;font-size:24px;line-height:1;color:#FFFFFF">{{ qty }}</span>
+              <button type="button" onClick="{{ inc }}" aria-label="Povećaj" style="width:44px;height:44px;border:1px solid rgba(127,196,255,0.4);border-radius:999px;background:rgba(255,255,255,0.06);color:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M2 7h10M7 2v10"></path></svg></button>
+            </div>
+          </div>
+          <div style="position:relative;display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.14)">
+            <span style="font-size:15px;color:#C9D8E8">{{ qtyLabel }}</span>
+            <span style="flex:none;white-space:nowrap;font-family:'Source Serif 4',serif;font-size:34px;line-height:1;color:#FFFFFF">{{ total }} <span style="font-size:16px;color:#C9D8E8">din</span></span>
+          </div>
+          <sc-if value="{{ freeShip }}" hint-placeholder-val="{{ false }}">
+            <div class="degra-pop" style="position:relative;margin-top:-6px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;background:#2E8FE6;color:#FFFFFF;box-shadow:0 0 0 1px rgba(127,196,255,0.6),0 8px 24px rgba(46,143,230,0.45)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.7" style="flex:none"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path><circle cx="7" cy="17.5" r="1.6"></circle><circle cx="17" cy="17.5" r="1.6"></circle></svg><div style="display:flex;flex-direction:column;line-height:1.25"><span style="font-size:16px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase">Poštarina gratis</span></div></div>
+          </sc-if>
+          <ol style="position:relative;margin:0;padding:0;list-style:none;display:{{ deskDisp }};flex-direction:column;gap:14px">
+            <li style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start"><span style="width:28px;height:28px;border-radius:999px;border:1px solid rgba(127,196,255,0.5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#7FC4FF">1</span><span style="font-size:15px;line-height:1.5;color:#C9D8E8;padding-top:3px">Upišeš podatke</span></li>
+            <li style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start"><span style="width:28px;height:28px;border-radius:999px;border:1px solid rgba(127,196,255,0.5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#7FC4FF">2</span><span style="font-size:15px;line-height:1.5;color:#C9D8E8;padding-top:3px">Klikneš na dugme Poruči</span></li>
+            <li style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start"><span style="width:28px;height:28px;border-radius:999px;border:1px solid rgba(127,196,255,0.5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#7FC4FF">3</span><span style="font-size:15px;line-height:1.5;color:#C9D8E8;padding-top:3px">Paket stiže na tvoju adresu</span></li>
+          </ol>
+        </div>
+        <div style="position:relative;flex:1.3 1 340px;padding:clamp(28px,4vw,44px);color:#0B1F33">
+          <button type="button" onClick="{{ closeModal }}" aria-label="Zatvori" style="position:absolute;top:14px;right:14px;width:44px;height:44px;border:none;background:#F1F5F9;border-radius:999px;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:#E2EAF2"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="#0B1F33" stroke-width="1.8"><path d="M3 3l12 12M15 3L3 15"></path></svg></button>
+          <sc-if value="{{ modalForm }}" hint-placeholder-val="{{ true }}">
+            <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1D6FB0">Porudžbina</p>
+            <h3 style="margin:0 0 10px;padding-right:48px;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(26px,3vw,32px);line-height:1.15">Gde da pošaljemo paket?</h3>
+            <p style="margin:0 0 28px;display:flex;align-items:center;gap:8px;font-size:16px;color:#34475A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D6FB0" stroke-width="1.7" style="flex:none"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path><circle cx="7" cy="17.5" r="1.6"></circle><circle cx="17" cy="17.5" r="1.6"></circle></svg><span>Poruči dva pakovanja i <strong style="font-weight:600;color:#1D6FB0">poštarina je gratis</strong>.</span></p>
+            <form onSubmit="{{ submitModal }}" style="display:flex;flex-direction:column;gap:16px">
+              <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Ime i prezime<input required="required" name="ime" autocomplete="name" placeholder="Marko Petrović" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px">
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Mesto<input required="required" name="mesto" autocomplete="address-level2" placeholder="Beograd" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Adresa<input required="required" name="adresa" autocomplete="street-address" placeholder="Ulica i broj" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px">
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Broj telefona<input required="required" type="tel" name="telefon" autocomplete="tel" placeholder="06x xxx xxxx" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+                <label style="display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Email<input required="required" type="email" name="email" autocomplete="email" placeholder="ime@email.com" style="height:52px;padding:0 16px;border:1px solid #E1E9F1;border-radius:12px;font-size:16px;background:#F5F8FC;color:#0B1F33;width:100%;transition:border-color .2s,background .2s" style-focus="outline:none;background:#FFFFFF;border-color:#2E8FE6;box-shadow:0 0 0 4px rgba(46,143,230,0.14)"></input></label>
+              </div>
+              <div style="display:{{ deskDisp }};align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 12px 12px 18px;border:1px solid #E1E9F1;border-radius:14px;background:#F5F8FC">
+                <div style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#34475A">Broj pakovanja</span>
+                  <span style="font-size:13px;color:#5A6B7C">2500 din po pakovanju</span>
+                  <sc-if value="{{ freeShip }}" hint-placeholder-val="{{ false }}"><span class="degra-pop" style="margin-top:4px;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 8px;border-radius:999px;background:#2E8FE6;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Poštarina gratis</span></sc-if>
+                  <sc-if value="{{ noFreeShip }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;color:#1D6FB0">Uz 2 pakovanja poštarina je gratis</span></sc-if>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <button type="button" onClick="{{ dec }}" aria-label="Smanji" style="width:44px;height:44px;border:none;border-radius:999px;background:#FFFFFF;color:#0B1F33;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,30,60,0.08)" style-hover="background:#EAF4FD"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#0B1F33" stroke-width="1.8"><path d="M2 7h10"></path></svg></button>
+                  <span aria-live="polite" style="min-width:40px;text-align:center;font-family:'Source Serif 4',serif;font-size:24px;line-height:1;color:#0B1F33">{{ qty }}</span>
+                  <button type="button" onClick="{{ inc }}" aria-label="Povećaj" style="width:44px;height:44px;border:none;border-radius:999px;background:#FFFFFF;color:#0B1F33;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,30,60,0.08)" style-hover="background:#EAF4FD"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#0B1F33" stroke-width="1.8"><path d="M2 7h10M7 2v10"></path></svg></button>
+                </div>
+              </div>
+              {{ submitBtn }}
+              <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#5A6B7C">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#5A6B7C" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5"></rect><path d="M5.5 7V5a2.5 2.5 0 015 0v2"></path></svg>
+                <span>Podatke koristimo samo za ovu porudžbinu.</span>
+              </div>
+              <p style="margin:0;font-size:13px;line-height:1.5;color:#5A6B7C;text-align:center">Pre upotrebe popričaj sa lekarom ili farmaceutom.</p>
+            </form>
+          </sc-if>
+          <sc-if value="{{ modalDone }}" hint-placeholder-val="{{ false }}">
+            <div style="min-height:100%;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:24px 0">
+              <div style="width:64px;height:64px;border-radius:999px;background:#EAF4FD;display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2E8FE6" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+              <h3 style="margin:8px 0 0;font-family:'Source Serif 4',serif;font-weight:400;font-size:32px;line-height:1.2">Porudžbina je primljena.</h3>
+              <p style="margin:0;color:#34475A">Uskoro te zovemo da je potvrdimo. Drži telefon pri ruci.</p>
+              <button type="button" onClick="{{ closeModal }}" style="margin-top:12px;align-self:flex-start;height:50px;padding:0 28px;border:1px solid #D6E1EC;border-radius:999px;background:#FFFFFF;color:#0B1F33;font-size:14px;font-weight:600;cursor:pointer" style-hover="border-color:#2E8FE6">Zatvori</button>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;headline&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Pitanje&quot;,&quot;Kako da&quot;,&quot;Upozorenje&quot;],&quot;default&quot;:&quot;Pitanje&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Copy&quot;},&quot;loaderStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Krug&quot;,&quot;Zavesa&quot;,&quot;Linija&quot;],&quot;default&quot;:&quot;Krug&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Učitavanje&quot;}}">
+class Component extends DCLogic {
+  state = { sent: false, scrolled: false, modal: false, modalSent: false, qty: 1, loader: 'on', faqOpen: -1, doc: false, docZ: 1, mob: typeof window !== 'undefined' && window.innerWidth < 768, menu: false, pQty: 1, pSent: false };
+  openModal = () => { this.setState({ modal: true, modalSent: false, qty: 1, menu: false }); document.body.style.overflow = 'hidden'; };
+  closeModal = () => { this.setState({ modal: false }); document.body.style.overflow = ''; };
+  componentDidMount() {
+    document.body.style.overflow = 'hidden';
+    this.t1 = setTimeout(() => this.setState({ loader: 'out' }), 2200);
+    this.t2 = setTimeout(() => { this.setState({ loader: 'off' }); if (!this.state.modal) document.body.style.overflow = ''; }, 3200);
+    this.onScroll = () => { const s = window.scrollY > 24; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onResize = () => { const m = window.innerWidth < 768; if (m !== this.state.mob) this.setState({ mob: m, menu: m ? this.state.menu : false }); };
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    this.onClick = (ev) => {
+      const a = ev.target.closest && ev.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute('href').slice(1);
+      ev.preventDefault();
+      if (!id) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (id === 'pitanja') { window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' }); return; }
+      const h2 = el.tagName === 'SECTION' ? el.querySelector('h2') : null;
+      const target = h2 ? h2.parentElement : el;
+      const nav = 110;
+      const r = target.getBoundingClientRect();
+      const free = window.innerHeight - nav;
+      const extra = r.height < free ? Math.min((free - r.height) / 2, 60) : 0;
+      window.scrollTo({ top: r.top + window.scrollY - nav - extra, behavior: 'smooth' });
+    };
+    document.addEventListener('click', this.onClick);
+    this.onKey = (ev) => { if (ev.key !== 'Escape') return; if (this.state.doc) { this.setState({ doc: false }); document.body.style.overflow = ''; } else if (this.state.modal) this.closeModal(); };
+    document.addEventListener('keydown', this.onKey);
+    this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); clearTimeout(this.t1); clearTimeout(this.t2); window.removeEventListener('scroll', this.onScroll); document.removeEventListener('click', this.onClick); document.removeEventListener('keydown', this.onKey); document.body.style.overflow = ''; }
+  renderVals() {
+    const sc = this.state.scrolled || this.state.menu;
+    const mob = this.state.mob;
+    const h = this.props.headline ?? 'Pitanje';
+    const e = React.createElement;
+    const navCta = e('button', { type: 'button', onClick: this.openModal, className: 'degra-cta', style: { position: 'relative', display: 'inline-flex', padding: '1.5px', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', borderRadius: 999, overflow: 'hidden', textDecoration: 'none', boxShadow: '0 0 22px rgba(61,155,234,0.35)', isolation: 'isolate' } },
+      e('span', { 'aria-hidden': true, style: { position: 'absolute', left: '50%', top: '50%', width: 420, height: 420, background: 'conic-gradient(from 0deg, rgba(61,155,234,0) 0deg, rgba(61,155,234,0) 250deg, #7FC4FF 320deg, #FFFFFF 350deg, rgba(61,155,234,0) 360deg)', transform: 'translate(-50%,-50%)', animation: 'degraSpin 3.2s linear infinite', zIndex: -1 } }),
+      e('span', { 'aria-hidden': true, style: { position: 'absolute', inset: 0, borderRadius: 999, border: '1px solid rgba(127,196,255,0.28)', zIndex: -1 } }),
+      e('span', { className: 'degra-cta-in', style: { display: 'inline-flex', alignItems: 'center', gap: 10, padding: '13px 26px', borderRadius: 999, background: '#072F58', color: '#FFFFFF', fontSize: 13, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap', transition: 'background .25s' } },
+        e('span', { style: { width: 7, height: 7, borderRadius: '50%', background: '#7FC4FF', boxShadow: '0 0 10px #7FC4FF' } }),
+        'Naruči za 2500 din'));
+    const submitBtn = e('button', { type: 'submit', className: 'degra-cta', style: { position: 'relative', marginTop: 10, display: 'flex', width: '100%', padding: 0, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', borderRadius: 999, overflow: 'hidden', isolation: 'isolate' } },
+      e('span', { className: 'degra-submit-in', style: { flex: 1, height: 54, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, borderRadius: 999, background: '#1D6FB0', color: '#FFFFFF', fontSize: 13, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap', transition: 'background .25s' } },
+        'Poruči'));
+    const ld = this.state.loader;
+    const ls = this.props.loaderStyle ?? 'Krug';
+    const out = ld === 'out';
+    const BG = 'linear-gradient(180deg,#002547 0%,#00315a 100%)';
+    const logo = (delay) => e('img', { src: 'assets/degra-logo-white.png', alt: '', style: { position: 'relative', display: 'block', height: 'clamp(44px,7vw,64px)', width: 'auto', animation: 'degraFadeUp .9s cubic-bezier(.2,.8,.2,1) ' + delay + 's both' } });
+    let preloader = null;
+    if (ld !== 'off' && ls === 'Krug') {
+      preloader = e('div', { 'aria-hidden': true, style: { position: 'fixed', inset: 0, zIndex: 200, background: BG, display: 'flex', alignItems: 'center', justifyContent: 'center', clipPath: out ? 'circle(0% at 50% 50%)' : 'circle(150% at 50% 50%)', transition: 'clip-path .9s cubic-bezier(.7,0,.2,1)', pointerEvents: out ? 'none' : 'auto' } },
+        e('div', { style: { position: 'relative', width: 'clamp(220px,34vw,300px)', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: out ? 'scale(.6)' : 'scale(1)', opacity: out ? 0 : 1, transition: 'transform .7s cubic-bezier(.7,0,.2,1), opacity .5s ease' } },
+          e('div', { style: { position: 'absolute', inset: '-20%', borderRadius: '50%', background: 'radial-gradient(circle, rgba(46,143,230,0.28) 0%, rgba(46,143,230,0) 62%)' } }),
+          e('svg', { viewBox: '0 0 200 200', style: { position: 'absolute', inset: 0, width: '100%', height: '100%', transform: 'rotate(-90deg)' } },
+            e('circle', { cx: 100, cy: 100, r: 96, fill: 'none', stroke: 'rgba(255,255,255,0.08)', strokeWidth: 2 }),
+            e('circle', { cx: 100, cy: 100, r: 96, fill: 'none', stroke: '#2E8FE6', strokeWidth: 6, strokeLinecap: 'round', strokeDasharray: 604, style: { animation: 'degraRing 1.5s cubic-bezier(.65,0,.25,1) .1s both' } })),
+          e('svg', { viewBox: '0 0 200 200', style: { position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'degraRingSpin 1.4s linear infinite' } },
+            e('circle', { cx: 196, cy: 100, r: 3.5, fill: '#FFFFFF', style: { filter: 'drop-shadow(0 0 6px #9FD3FF)' } })),
+          logo(0.55)));
+    } else if (ld !== 'off' && ls === 'Zavesa') {
+      const half = (top) => e('div', { style: { position: 'absolute', left: 0, right: 0, height: '50.5%', [top ? 'top' : 'bottom']: 0, background: BG, transform: out ? (top ? 'translateY(-100%)' : 'translateY(100%)') : 'none', transition: 'transform .9s cubic-bezier(.75,0,.2,1)' } });
+      preloader = e('div', { 'aria-hidden': true, style: { position: 'fixed', inset: 0, zIndex: 200, pointerEvents: out ? 'none' : 'auto' } },
+        half(true), half(false),
+        e('div', { style: { position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 26, opacity: out ? 0 : 1, transition: 'opacity .35s ease' } },
+          logo(0.2),
+          e('div', { style: { width: 'clamp(160px,30vw,280px)', height: 2, background: 'linear-gradient(90deg, rgba(46,143,230,0), #7FC4FF 50%, rgba(46,143,230,0))', transformOrigin: 'center', animation: 'degraLine 1.4s cubic-bezier(.65,0,.25,1) .5s both' } })));
+    } else if (ld !== 'off') {
+      preloader = e('div', { 'aria-hidden': true, style: { position: 'fixed', inset: 0, zIndex: 200, background: BG, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 28, opacity: out ? 0 : 1, transition: 'opacity .7s ease', pointerEvents: out ? 'none' : 'auto' } },
+        e('div', { style: { position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+          e('div', { style: { position: 'absolute', width: 340, height: 340, borderRadius: '50%', background: 'radial-gradient(circle, rgba(61,155,234,0.35) 0%, rgba(61,155,234,0) 65%)', animation: 'degraGlow 2.2s ease-in-out infinite' } }),
+          e('img', { src: 'assets/degra-logo-white.png', alt: '', style: { position: 'relative', display: 'block', height: 'clamp(56px,9vw,84px)', width: 'auto', animation: 'degraLogoIn 1.3s cubic-bezier(.2,.8,.2,1) .15s both' } })),
+        e('div', { style: { width: 'clamp(140px,22vw,200px)', height: 2, borderRadius: 2, background: 'rgba(255,255,255,0.14)', overflow: 'hidden' } },
+          e('div', { style: { width: '100%', height: '100%', background: '#7FC4FF', transformOrigin: 'left', animation: 'degraBar 1.9s cubic-bezier(.6,.1,.2,1) both' } })));
+    }
+    const FAQ = [
+      ['Kako se koristi DEGRA?', 'DEGRA se uzima oralno, približno jedan sat pre planirane seksualne aktivnosti. Tabletu treba progutati uz čašu vode. Uzimanje uz obilan obrok može odložiti početak dejstva.\n\nPreporučena početna doza sildenafila za većinu odraslih muškaraca je 50 mg, dok lekar može prilagoditi dozu u zavisnosti od individualnih potreba i podnošljivosti. Maksimalna preporučena doza je 100 mg, najviše jednom u 24 sata.\n\nZa postizanje efekta neophodna je seksualna stimulacija. Pre upotrebe obavezno pročitajte uputstvo i posavetujte se sa lekarom ili farmaceutom.'],
+      ['Koliko brzo počinje da deluje?', 'Dejstvo obično počinje za 30 do 60 minuta. Ako tabletu uzmeš posle obilnog obroka, početak dejstva može da kasni.'],
+      ['Koliko dugo traje dejstvo?', 'Dejstvo traje i do 4 do 5 sati. Erekcija se ne javlja sama od sebe u tom periodu, već samo uz seksualnu stimulaciju.'],
+      ['Da li je potrebna seksualna stimulacija?', 'Da. DEGRA ne izaziva automatsku erekciju. Pojačava prirodni odgovor organizma, pa je za dejstvo neophodna seksualna stimulacija.'],
+      ['Ko ne sme da koristi DEGRA?', 'DEGRA ne smeju da koriste muškarci koji uzimaju nitrate ili donore azot-oksida (lekovi za srce), osobe sa teškim bolestima srca, nedavnim moždanim ili srčanim udarom, niskim krvnim pritiskom ili teškim oboljenjem jetre. Nije namenjena osobama mlađim od 18 godina. Ako nisi siguran, pitaj lekara.'],
+      ['Da li se može kombinovati sa alkoholom?', 'Bolje je izbeći veće količine alkohola. Alkohol može da oslabi dejstvo i da pojača pad krvnog pritiska.']
+    ];
+    const faqs = FAQ.map(([q, a], i) => { const open = this.state.faqOpen === i; return { q, a, open, icon: open ? '−' : '+', toggle: () => this.setState({ faqOpen: open ? -1 : i }) }; });
+    return {
+      faqs,
+      preloader,
+      navCta,
+      submitBtn,
+      modalOpen: this.state.modal,
+      deskDisp: mob ? 'none' : 'flex',
+      docIsOpen: this.state.doc,
+      docPad: mob ? '72px 0 24px' : 'clamp(16px,4vw,48px) 16px',
+      docImgW: mob ? (this.state.docZ * 100) + '%' : '100%',
+      docMaxW: mob ? 'none' : '1000px',
+      docHint: mob && this.state.docZ === 1,
+      docFacts: [
+        { k: 'Naziv', v: 'DEGRA 50 mg i 100 mg, film tablete' },
+        { k: 'Sastav', v: 'Sildenafil (sildenafil citrat), 50 mg ili 100 mg po tableti' },
+        { k: 'Izgled', v: 'Plava šestougaona tableta, oznaka DGR i 100' },
+        { k: 'Namena', v: 'Erektilna disfunkcija kod odraslih muškaraca, uz seksualnu stimulaciju' },
+        { k: 'Doziranje', v: 'Početna doza 50 mg, oko sat pre odnosa. Najviše 100 mg, jednom dnevno' },
+        { k: 'Nije za', v: 'Osobe mlađe od 18 godina' },
+        { k: 'Pečat', v: 'Agencija za lekove i medicinska sredstva, Skoplje' }
+      ],
+      docTap: (ev) => {
+        ev.stopPropagation();
+        if (!mob) return;
+        const now = Date.now();
+        if (this.lastTap && now - this.lastTap < 320) {
+          const box = ev.currentTarget.parentElement;
+          const r = ev.currentTarget.getBoundingClientRect();
+          const fx = (ev.clientX - r.left) / r.width, fy = (ev.clientY - r.top) / r.height;
+          const z = this.state.docZ > 1 ? 1 : 2.5;
+          this.setState({ docZ: z }, () => { requestAnimationFrame(() => { box.scrollLeft = fx * box.scrollWidth - box.clientWidth / 2; box.scrollTop = fy * box.scrollHeight - box.clientHeight / 2; }); });
+          this.lastTap = 0;
+        } else this.lastTap = now;
+      },
+      docTS: (ev) => { if (ev.touches.length === 2) { const [a, b] = ev.touches; this.pinch = { d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY), z: this.state.docZ }; } },
+      docTM: (ev) => { if (this.pinch && ev.touches.length === 2) { const [a, b] = ev.touches; const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); const z = Math.min(4, Math.max(1, this.pinch.z * d / this.pinch.d)); this.setState({ docZ: Math.round(z * 100) / 100 }); } },
+      docTE: (ev) => { if (ev.touches.length < 2) this.pinch = null; },
+      docOpen: () => { this.setState({ doc: true, docZ: 1 }); document.body.style.overflow = 'hidden'; },
+      docClose: () => { this.setState({ doc: false }); document.body.style.overflow = ''; },
+      footDir: mob ? 'column' : 'row',
+      footGap: mob ? '14px' : '16px 32px',
+      footMax: mob ? '34ch' : '62ch',
+      footAlign: mob ? 'center' : 'right',
+      mobDisp: mob ? 'flex' : 'none',
+      headPad: mob ? '20px 20px' : '28px 32px',
+      floatPadL: mob ? '20px' : '26px',
+      menuOpen: this.state.menu,
+      burgerPath: this.state.menu ? 'M4 4l12 12M16 4L4 16' : 'M3 6h14M3 10h14M3 14h14',
+      toggleMenu: () => { const o = !this.state.menu; this.setState({ menu: o }); document.body.style.overflow = o ? 'hidden' : ''; },
+      closeMenu: () => { this.setState({ menu: false }); document.body.style.overflow = ''; },
+      menuOrder: () => { this.setState({ menu: false }); this.openModal(); },
+      pQty: this.state.pQty,
+      pTotal: (this.state.pQty * 2500).toLocaleString('sr-RS'),
+      pQtyLabel: this.state.pQty === 1 ? 'Jedno pakovanje' : this.state.pQty + ' pakovanja',
+      pFreeShip: this.state.pQty >= 2,
+      pNoFreeShip: this.state.pQty < 2,
+      pInc: () => this.setState(s => ({ pQty: Math.min(10, s.pQty + 1) })),
+      pDec: () => this.setState(s => ({ pQty: Math.max(1, s.pQty - 1) })),
+      ponForm: !this.state.pSent,
+      ponDone: this.state.pSent,
+      submitPon: (ev) => { ev.preventDefault(); this.setState({ pSent: true }); },
+      ponReset: () => this.setState({ pSent: false, pQty: 1 }),
+      openModal: this.openModal,
+      qty: this.state.qty,
+      freeShip: this.state.qty >= 2,
+      noFreeShip: this.state.qty < 2,
+      total: (this.state.qty * 2500).toLocaleString('sr-RS'),
+      qtyLabel: this.state.qty === 1 ? 'Jedno pakovanje' : this.state.qty + ' pakovanja',
+      inc: () => this.setState(s => ({ qty: Math.min(10, s.qty + 1) })),
+      dec: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+      modalForm: !this.state.modalSent,
+      modalDone: this.state.modalSent,
+      closeModal: this.closeModal,
+      stop: (ev) => ev.stopPropagation(),
+      submitModal: (ev) => { ev.preventDefault(); this.setState({ modalSent: true }); },
+      floatOpacity: sc ? 1 : 0,
+      floatTransform: sc ? "translateY(0) scale(1)" : "translateY(-24px) scale(0.97)",
+      floatPE: sc ? "auto" : "none",
+      staticOpacity: sc ? 0 : 1,
+      staticVis: sc ? "hidden" : "visible",
+      hlQuestion: h === 'Pitanje',
+      hlHowTo: h === 'Kako da',
+      hlWarning: h === 'Upozorenje',
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      benefits: [
+        'Ti opet prvi priđeš. Ne čekaš da ona počne pa da se snalaziš.',
+        'Prestaješ da smišljaš izgovore svakog petka.',
+        'Ona prestaje da misli da je problem u njoj.',
+        'Ne treba ti ona čaša "za hrabrost" pre nego što legneš.',
+        'Ne guglaš simptome u dva ujutru.',
+        'Vraća se šala i opuštenost između vas dvoje.',
+        'Zaspiš mirno, bez preslišavanja šta je pošlo naopako.',
+        'Rešio si stvar sam, bez neprijatnog razgovora u apoteci.'
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
